@@ -1,11 +1,19 @@
 import express from "express";
-const app = express();
-const port = 3000;
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+import routes from "./routes";
 
-app.listen(port, () => {
-  return console.log(`Express is listening at http://localhost:${port}`);
-});
+class App {
+  public server;
+
+  constructor() {
+    this.server = express();
+
+    this.routes();
+  }
+
+  routes() {
+    this.server.use(routes);
+  }
+}
+
+export default new App().server;
