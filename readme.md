@@ -16,3 +16,13 @@
 3. Run server
 
 `yarn run start-server`
+
+## car-inventory-frontend
+
+1. Install dependencies  
+
+`yarn install`
+
+2. run web
+
+`yarn start`
