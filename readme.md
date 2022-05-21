@@ -8,7 +8,7 @@ https://drive.google.com/file/d/1T2_gOkS68L55XVOCZrqLf7lJ7NbfyyaB/view
 
 ## car-inventory-backend
 
-First, you need to add .env file given into car-inventory-backend
+First, you need to add .env file given into car-inventory-backend folder
 
 1. Install dependencies  
 
