@@ -12,6 +12,8 @@ export interface ICarInventoryLean {
   carPlate: string;
   soldPrice?: number;
   soldDate?: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export type ICarInventory = ICarInventoryLean & Document;

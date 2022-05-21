@@ -30,4 +30,25 @@ routes.post("/addCar", async (req: Request, res: Response) => {
     .json(`Add car successfully added, ${JSON.stringify(req.body)}`);
 });
 
+routes.post("/viewCarInfo", async (req: Request, res: Response) => {
+  const id = req.body.id;
+  const result: ICarInventoryLean = await carModel.findById(id);
+
+  return res.status(200).json(result);
+});
+
+routes.post("/soldCar", async (req: Request, res: Response) => {
+  const id = req.body.id;
+  const soldPrice = req.body.soldPrice;
+  await carModel.findByIdAndUpdate(id, {
+    $set: {
+      status: CarStatus.PURCHASED,
+      soldPrice: soldPrice,
+      soldDate: Date.now(),
+    },
+  });
+
+  return res.status(200).json("done");
+});
+
 export default routes;
