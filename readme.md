@@ -3,6 +3,9 @@
 - [node](https://nodejs.org/en/download/) using node v16.14.0
 - [yarn](https://yarnpkg.com/lang/en/docs/install/) 
 
+## DEMO VIDEO
+https://drive.google.com/file/d/1T2_gOkS68L55XVOCZrqLf7lJ7NbfyyaB/view
+
 ## car-inventory-backend
 
 1. Install dependencies  
