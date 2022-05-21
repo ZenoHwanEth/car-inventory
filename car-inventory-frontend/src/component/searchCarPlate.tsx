@@ -78,6 +78,7 @@ const SearchCarPlate = () => {
             <th>Car Price</th>
             <th>Sold Price</th>
             <th>Sold Date</th>
+            <th>Created Date</th>
           </tr>
         </thead>
         <tbody>
@@ -100,6 +101,11 @@ const SearchCarPlate = () => {
                       moment(car.soldDate)
                         .utcOffset("+0800")
                         .format("MMMM Do YYYY, h:mm:ss a")}
+                  </td>
+                  <td>
+                    {moment(car.createdAt)
+                      .utcOffset("+0800")
+                      .format("MMMM Do YYYY, h:mm:ss a")}
                   </td>
                 </tr>
               );

@@ -2,6 +2,7 @@ import { Router, Request, Response, NextFunction } from "express";
 import carModel from "./model/car-model";
 import { CarStatus } from "./enum/car-status";
 import { ICarInventoryLean } from "./model/car-model";
+import { v4 as uuidv4 } from "uuid";
 
 const routes = Router();
 
@@ -14,6 +15,7 @@ routes.post("/addCar", async (req: Request, res: Response) => {
 
   try {
     await carModel.insertMany({
+      _id: uuidv4(),
       status: CarStatus.NEW,
       sku: reqBody.sku,
       carPrice: reqBody.carPrice,
@@ -62,6 +64,7 @@ routes.post("/findPlateNumber", async (req: Request, res: Response) => {
   try {
     const carInventoryItems = await carModel
       .find(args)
+      .sort({ createdAt: -1 })
       .limit(20)
       .read("secondary");
     return res.status(200).json(carInventoryItems);
