@@ -51,4 +51,23 @@ routes.post("/soldCar", async (req: Request, res: Response) => {
   return res.status(200).json("done");
 });
 
+routes.post("/findPlateNumber", async (req: Request, res: Response) => {
+  const carPlateNumber = req.body.carPlateNumber ?? "";
+
+  const args: any = {};
+  if (carPlateNumber) {
+    args.carPlate = carPlateNumber;
+  }
+
+  try {
+    const carInventoryItems = await carModel
+      .find(args)
+      .limit(20)
+      .read("secondary");
+    return res.status(200).json(carInventoryItems);
+  } catch (err) {
+    return res.status(500).json(`Search Car info : ${err.message}`);
+  }
+});
+
 export default routes;

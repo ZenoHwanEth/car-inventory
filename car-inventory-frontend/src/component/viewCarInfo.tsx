@@ -29,10 +29,21 @@ const ViewCarInfo = () => {
     soldDate: "",
   });
   const [soldPrice, setSoldPrice] = useState("");
+  const [found, setFound] = useState(true);
 
   async function getCarInfo(id: string) {
     axios
-      .post("http://localhost:3333/viewCarInfo", { id: id })
+      .post(
+        "http://localhost:3333/viewCarInfo",
+        { id: id },
+        {
+          headers: {
+            "Content-Type": "application/json;charset=UTF-8",
+            "Access-Control-Allow-Origin": "*",
+          },
+          timeout: 3000,
+        }
+      )
       .then((response) => {
         const data = response.data;
 
@@ -48,7 +59,10 @@ const ViewCarInfo = () => {
           soldDate: data.soldDate ?? "",
         });
 
-        return response.data;
+        return data;
+      })
+      .catch((error) => {
+        setFound(false);
       });
   }
 
@@ -73,13 +87,22 @@ const ViewCarInfo = () => {
   };
 
   function renderTableInfo() {
-    if (carInfo.carPlate === "") {
+    if (carInfo.carPlate === "" && found) {
       return (
         <div className="text-center mt-5">
           <Spinner animation="border" role="status">
             <span className="visually-hidden">Loading For Car Info...</span>
           </Spinner>
         </div>
+      );
+    } else if (!found) {
+      return (
+        <Image
+          src="https://c.tenor.com/IHdlTRsmcS4AAAAC/404.gif"
+          className=" img-fluid mx-auto"
+          height="50%"
+          width="50%"
+        ></Image>
       );
     } else {
       return (
